@@ -1,0 +1,25 @@
+{
+  "cleoBeautySalonApp": {
+    "time": {
+      "home": {
+        "title": "Times",
+        "createLabel": "Создать новый Time",
+        "createOrEditLabel": "Создать или отредактировать Time",
+        "notFound": "No Times found"
+      },
+      "created": "Новый Time создан с идентификатором {{ param }}",
+      "updated": "Time обновлен с идентификатором {{ param }}",
+      "deleted": "Time удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Time {{ id }}?"
+      },
+      "detail": {
+        "title": "Time"
+      },
+      "date": "Date",
+      "phone": "Phone",
+      "client": "Client",
+      "service": "Service"
+    }
+  }
+}

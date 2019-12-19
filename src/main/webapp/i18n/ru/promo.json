@@ -1,0 +1,26 @@
+{
+  "cleoBeautySalonApp": {
+    "promo": {
+      "home": {
+        "title": "Promos",
+        "createLabel": "Создать новый Promo",
+        "createOrEditLabel": "Создать или отредактировать Promo",
+        "notFound": "No Promos found"
+      },
+      "created": "Новый Promo создан с идентификатором {{ param }}",
+      "updated": "Promo обновлен с идентификатором {{ param }}",
+      "deleted": "Promo удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Promo {{ id }}?"
+      },
+      "detail": {
+        "title": "Promo"
+      },
+      "promoName": "Promo Name",
+      "description": "Description",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "sale": "Sale"
+    }
+  }
+}

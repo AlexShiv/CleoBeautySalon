@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="service">
+            <h2><span jhiTranslate="cleoBeautySalonApp.service.detail.title">Service</span> {{service.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cleoBeautySalonApp.service.serviceName">Service Name</span></dt>
+                <dd>
+                    <span>{{service.serviceName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cleoBeautySalonApp.service.maxDuration">Max Duration</span></dt>
+                <dd>
+                    <span>{{service.maxDuration}}</span>
+                </dd>
+                <dt><span jhiTranslate="cleoBeautySalonApp.service.price">Price</span></dt>
+                <dd>
+                    <span>{{service.price}}</span>
+                </dd>
+                <dt><span jhiTranslate="cleoBeautySalonApp.service.job">Job</span></dt>
+                <dd>
+                    <div *ngIf="service.job">
+                        <a [routerLink]="['/job', service.job?.id, 'view']">{{service.job?.jobTitle}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/service', service.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

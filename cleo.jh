@@ -1,0 +1,65 @@
+
+/**
+ * Сущность сотрудника.
+ */
+entity Employee {
+    
+	firstName String, //Имя
+	lastName String, //Фамилия
+    patronomic String, // Отчество
+    experience String, // стаж работы
+}
+
+/**
+ * Сущность должности сотрудника.
+ */
+entity Job {
+	jobTitle String // название должности
+}
+
+/**
+ * Сущность акций.
+ */
+entity Promo {
+	promoName String,
+	description Long,
+	startDate Instant,
+	endDate Instant,
+    sale Integer// не обязательное поле
+}
+
+//ОБязанности
+entity Service {
+    serviceName String, 
+    maxDuration Integer,
+    price Integer
+}
+
+// Запись
+entity Time {
+    date LocalDate,
+    phone String
+}
+
+entity Client {
+	name String,
+	phone String
+}
+
+relationship OneToMany {
+    Client to Time{client(name)} 
+    Service to Time{service(serviceName)} 
+    Job to Service{job(jobTitle)}
+}
+
+relationship ManyToOne {
+	Employee{job(jobTitle)} to Job 
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+{
+  "cleoBeautySalonApp": {
+    "service": {
+      "home": {
+        "title": "Services",
+        "createLabel": "Создать новый Service",
+        "createOrEditLabel": "Создать или отредактировать Service",
+        "notFound": "No Services found"
+      },
+      "created": "Новый Service создан с идентификатором {{ param }}",
+      "updated": "Service обновлен с идентификатором {{ param }}",
+      "deleted": "Service удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Service {{ id }}?"
+      },
+      "detail": {
+        "title": "Service"
+      },
+      "serviceName": "Service Name",
+      "maxDuration": "Max Duration",
+      "price": "Price",
+      "time": "Time",
+      "job": "Job"
+    }
+  }
+}
