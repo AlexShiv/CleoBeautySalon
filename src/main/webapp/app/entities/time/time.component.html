@@ -1,0 +1,69 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cleoBeautySalonApp.time.home.title">Times</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-time" [routerLink]="['/time/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="cleoBeautySalonApp.time.home.createLabel">
+            Create a new Time
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="times?.length === 0">
+        <span jhiTranslate="cleoBeautySalonApp.time.home.notFound">No times found</span>
+    </div>
+    <div class="table-responsive" *ngIf="times?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.date">Date</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.phone">Phone</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.client">Client</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.service">Service</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let time of times ;trackBy: trackId">
+                <td><a [routerLink]="['/time', time.id, 'view' ]">{{time.id}}</a></td>
+                <td>{{time.date | date:'mediumDate'}}</td>
+                <td>{{time.phone}}</td>
+                <td>
+                    <div *ngIf="time.client">
+                        <a [routerLink]="['/client', time.client?.id, 'view' ]" >{{time.client?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="time.service">
+                        <a [routerLink]="['/service', time.service?.id, 'view' ]" >{{time.service?.serviceName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/time', time.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/time', time.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(time)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

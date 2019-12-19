@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-employee-heading" jhiTranslate="cleoBeautySalonApp.employee.home.createOrEditLabel">Create or edit a Employee</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.employee.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                           formControlName="firstName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.employee.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                           formControlName="lastName"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.employee.patronomic" for="field_patronomic">Patronomic</label>
+                    <input type="text" class="form-control" name="patronomic" id="field_patronomic"
+                           formControlName="patronomic"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.employee.experience" for="field_experience">Experience</label>
+                    <input type="text" class="form-control" name="experience" id="field_experience"
+                           formControlName="experience"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.employee.job" for="field_job">Job</label>
+                    <select class="form-control" id="field_job" name="job" formControlName="job">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="jobOption.id === editForm.get('job').value?.id ? editForm.get('job').value : jobOption" *ngFor="let jobOption of jobs; trackBy: trackJobById">{{jobOption.jobTitle}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

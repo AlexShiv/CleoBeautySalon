@@ -1,0 +1,42 @@
+{
+    "name": "Service",
+    "fields": [
+        {
+            "fieldName": "serviceName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "maxDuration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "time",
+            "otherEntityRelationshipName": "service",
+            "relationshipName": "time"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "job",
+            "otherEntityRelationshipName": "service",
+            "relationshipName": "job",
+            "otherEntityField": "jobTitle"
+        }
+    ],
+    "changelogDate": "20191219072756",
+    "entityTableName": "service",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

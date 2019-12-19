@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cleoBeautySalonApp.promo.home.title">Promos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-promo" [routerLink]="['/promo/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="cleoBeautySalonApp.promo.home.createLabel">
+            Create a new Promo
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="promos?.length === 0">
+        <span jhiTranslate="cleoBeautySalonApp.promo.home.notFound">No promos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="promos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.promo.promoName">Promo Name</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.promo.description">Description</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.promo.startDate">Start Date</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.promo.endDate">End Date</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.promo.sale">Sale</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let promo of promos ;trackBy: trackId">
+                <td><a [routerLink]="['/promo', promo.id, 'view' ]">{{promo.id}}</a></td>
+                <td>{{promo.promoName}}</td>
+                <td>{{promo.description}}</td>
+                <td>{{promo.startDate | date:'medium'}}</td>
+                <td>{{promo.endDate | date:'medium'}}</td>
+                <td>{{promo.sale}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/promo', promo.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/promo', promo.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(promo)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

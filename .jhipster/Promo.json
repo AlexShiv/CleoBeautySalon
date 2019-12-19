@@ -1,0 +1,37 @@
+{
+    "name": "Promo",
+    "fields": [
+        {
+            "fieldName": "promoName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "sale",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191219072755",
+    "javadoc": "Сущность акций.",
+    "entityTableName": "promo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
