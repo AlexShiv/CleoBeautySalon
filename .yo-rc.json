@@ -1,0 +1,47 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "CleoBeautySalon",
+    "packageName": "ru.asu.cleo",
+    "packageFolder": "ru/asu/cleo",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "maven",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "protractor"
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "6.5.1",
+    "jwtSecretKey": "YjY0NTIxNjhhNzQ4Y2JhNDFhZWEzOGI3ZjZjZjRiMWNlYjAwOTkxMzg0ODMwYzA3ZTNkYjFmZmNhM2RlNWI0MjJhMGIyMDQ5NDFjN2FiNWU0MmJkOGRjZTZmYTZjNjljMzRmODZhOWM2NDFkMzNlOTYwNTJjNWM5MDM5MGRmM2Q=",
+    "embeddableLaunchScript": false,
+    "clientTheme": "none",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "blueprints": []
+  },
+  "git-provider": "GitHub",
+  "git-company": "AlexShiv",
+  "repository-name": "CleoBeautySalon"
+}
