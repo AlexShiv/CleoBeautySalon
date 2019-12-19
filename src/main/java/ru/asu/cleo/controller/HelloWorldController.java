@@ -4,13 +4,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.asu.cleo.service.dto.MainResponseDTO;
 
 @RestController
 @RequestMapping("/api")
 public class HelloWorldController {
 
     @GetMapping("/helloWorld")
-    private ResponseEntity<String> getHelloWorld() {
-        return ResponseEntity.ok("Leonid - Papyrus");
+    private ResponseEntity<MainResponseDTO<String>> getHelloWorld() {
+        return ResponseEntity.ok(new MainResponseDTO<>("Leonid - Papyrus"));
     }
 }
