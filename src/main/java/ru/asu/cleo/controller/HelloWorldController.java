@@ -42,7 +42,7 @@ public class HelloWorldController {
 
     @GetMapping("/object")
     private ResponseEntity<MainResponse<Employee>> getHelloWorldObject() {
-        Employee employee = employeeRepository.findById(1L).orElseThrow();
+        Employee employee = employeeRepository.findById(1L).get();
         return ResponseEntity.ok(new MainResponse<>(employee));
     }
 }
