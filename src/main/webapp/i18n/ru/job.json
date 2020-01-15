@@ -17,7 +17,8 @@
         "title": "Job"
       },
       "jobTitle": "Job Title",
-      "service": "Service"
+      "service": "Service",
+      "time": "Time"
     }
   }
 }

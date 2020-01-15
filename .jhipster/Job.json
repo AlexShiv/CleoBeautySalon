@@ -12,9 +12,15 @@
             "otherEntityName": "service",
             "otherEntityRelationshipName": "job",
             "relationshipName": "service"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "time",
+            "otherEntityRelationshipName": "job",
+            "relationshipName": "time"
         }
     ],
-    "changelogDate": "20191219072754",
+    "changelogDate": "20200115182333",
     "javadoc": "Сущность должности сотрудника.",
     "entityTableName": "job",
     "dto": "no",

@@ -40,13 +40,13 @@ describe('Promo e2e test', () => {
     await promoComponentsPage.clickOnCreateButton();
     await promise.all([
       promoUpdatePage.setPromoNameInput('promoName'),
-      promoUpdatePage.setDescriptionInput('5'),
+      promoUpdatePage.setDescriptionInput('description'),
       promoUpdatePage.setStartDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
       promoUpdatePage.setEndDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
       promoUpdatePage.setSaleInput('5')
     ]);
     expect(await promoUpdatePage.getPromoNameInput()).to.eq('promoName', 'Expected PromoName value to be equals to promoName');
-    expect(await promoUpdatePage.getDescriptionInput()).to.eq('5', 'Expected description value to be equals to 5');
+    expect(await promoUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
     expect(await promoUpdatePage.getStartDateInput()).to.contain('2001-01-01T02:30', 'Expected startDate value to be equals to 2000-12-31');
     expect(await promoUpdatePage.getEndDateInput()).to.contain('2001-01-01T02:30', 'Expected endDate value to be equals to 2000-12-31');
     expect(await promoUpdatePage.getSaleInput()).to.eq('5', 'Expected sale value to be equals to 5');

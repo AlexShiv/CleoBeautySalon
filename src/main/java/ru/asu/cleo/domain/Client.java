@@ -1,4 +1,5 @@
 package ru.asu.cleo.domain;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
@@ -7,8 +8,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A Client.
+ * Клиенты
  */
+@ApiModel(description = "Клиенты")
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {

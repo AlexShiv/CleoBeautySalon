@@ -18,7 +18,8 @@
             "relationshipName": "time"
         }
     ],
-    "changelogDate": "20191219072758",
+    "changelogDate": "20200115182336",
+    "javadoc": "Клиенты",
     "entityTableName": "client",
     "dto": "no",
     "pagination": "no",

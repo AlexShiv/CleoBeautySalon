@@ -24,7 +24,7 @@ public class Promo implements Serializable {
     private String promoName;
 
     @Column(name = "description")
-    private Long description;
+    private String description;
 
     @Column(name = "start_date")
     private Instant startDate;
@@ -57,16 +57,16 @@ public class Promo implements Serializable {
         this.promoName = promoName;
     }
 
-    public Long getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public Promo description(Long description) {
+    public Promo description(String description) {
         this.description = description;
         return this;
     }
 
-    public void setDescription(Long description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -131,7 +131,7 @@ public class Promo implements Serializable {
         return "Promo{" +
             "id=" + getId() +
             ", promoName='" + getPromoName() + "'" +
-            ", description=" + getDescription() +
+            ", description='" + getDescription() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             ", sale=" + getSale() +

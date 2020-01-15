@@ -7,7 +7,7 @@
         },
         {
             "fieldName": "description",
-            "fieldType": "Long"
+            "fieldType": "String"
         },
         {
             "fieldName": "startDate",
@@ -23,7 +23,7 @@
         }
     ],
     "relationships": [],
-    "changelogDate": "20191219072755",
+    "changelogDate": "20200115182338",
     "javadoc": "Сущность акций.",
     "entityTableName": "promo",
     "dto": "no",

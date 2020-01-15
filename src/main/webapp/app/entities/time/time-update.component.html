@@ -11,31 +11,35 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.date" for="field_date">Date</label>
-                    <div class="input-group">
-                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" formControlName="date"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
-                        </span>
+                    <div class="d-flex">
+                        <input id="field_date" type="datetime-local" class="form-control" name="date" formControlName="date" placeholder="YYYY-MM-DD HH:mm"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.phone" for="field_phone">Phone</label>
-                    <input type="text" class="form-control" name="phone" id="field_phone"
-                           formControlName="phone"/>
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.duration" for="field_duration">Duration</label>
+                    <input type="number" class="form-control" name="duration" id="field_duration"
+                           formControlName="duration"/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.client" for="field_client">Client</label>
                     <select class="form-control" id="field_client" name="client" formControlName="client">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.name}}</option>
+                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.service" for="field_service">Service</label>
-                    <select class="form-control" id="field_service" name="service" formControlName="service">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.job" for="field_job">Job</label>
+                    <select class="form-control" id="field_job" name="job" formControlName="job">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="serviceOption.id === editForm.get('service').value?.id ? editForm.get('service').value : serviceOption" *ngFor="let serviceOption of services; trackBy: trackServiceById">{{serviceOption.serviceName}}</option>
+                        <option [ngValue]="jobOption.id === editForm.get('job').value?.id ? editForm.get('job').value : jobOption" *ngFor="let jobOption of jobs; trackBy: trackJobById">{{jobOption.jobName}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.salon" for="field_salon">Salon</label>
+                    <select class="form-control" id="field_salon" name="salon" formControlName="salon">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="salonOption.id === editForm.get('salon').value?.id ? editForm.get('salon').value : salonOption" *ngFor="let salonOption of salons; trackBy: trackSalonById">{{salonOption.salonAddress}}</option>
                     </select>
                 </div>
             </div>

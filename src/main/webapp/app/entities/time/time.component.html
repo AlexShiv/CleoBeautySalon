@@ -20,25 +20,31 @@
             <tr>
             <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
             <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.date">Date</span></th>
-            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.phone">Phone</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.duration">Duration</span></th>
             <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.client">Client</span></th>
-            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.service">Service</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.job">Job</span></th>
+            <th scope="col" ><span jhiTranslate="cleoBeautySalonApp.time.salon">Salon</span></th>
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let time of times ;trackBy: trackId">
                 <td><a [routerLink]="['/time', time.id, 'view' ]">{{time.id}}</a></td>
-                <td>{{time.date | date:'mediumDate'}}</td>
-                <td>{{time.phone}}</td>
+                <td>{{time.date | date:'medium'}}</td>
+                <td>{{time.duration}}</td>
                 <td>
                     <div *ngIf="time.client">
-                        <a [routerLink]="['/client', time.client?.id, 'view' ]" >{{time.client?.name}}</a>
+                        <a [routerLink]="['/client', time.client?.id, 'view' ]" >{{time.client?.id}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="time.service">
-                        <a [routerLink]="['/service', time.service?.id, 'view' ]" >{{time.service?.serviceName}}</a>
+                    <div *ngIf="time.job">
+                        <a [routerLink]="['/job', time.job?.id, 'view' ]" >{{time.job?.jobName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="time.salon">
+                        <a [routerLink]="['/salon', time.salon?.id, 'view' ]" >{{time.salon?.salonAddress}}</a>
                     </div>
                 </td>
                 <td class="text-right">

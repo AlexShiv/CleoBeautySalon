@@ -1,15 +1,3 @@
-
-/**
- * Сущность сотрудника.
- */
-entity Employee {
-    
-	firstName String, //Имя
-	lastName String, //Фамилия
-    patronomic String, // Отчество
-    experience String, // стаж работы
-}
-
 /**
  * Сущность должности сотрудника.
  */
@@ -18,48 +6,52 @@ entity Job {
 }
 
 /**
- * Сущность акций.
+ * ОБязанности
  */
-entity Promo {
-	promoName String,
-	description Long,
-	startDate Instant,
-	endDate Instant,
-    sale Integer// не обязательное поле
-}
-
-//ОБязанности
 entity Service {
-    serviceName String, 
-    maxDuration Integer,
+    serviceName String,
+    maxDuration Double,
     price Integer
 }
 
-// Запись
+/**
+ * Запись
+ */
 entity Time {
-    date LocalDate,
-    phone String
+    date Instant,
+    duration Integer // вычисляется на сервере при создании записи
 }
 
+/**
+ * Клиенты
+ */
 entity Client {
 	name String,
 	phone String
 }
 
+/**
+ * Салоны
+ */
+entity Salon {
+    address String,
+    phone String
+}
+
+/**
+ * Сущность акций.
+ */
+entity Promo {
+	promoName String,
+	description String,
+	startDate Instant,
+	endDate Instant,
+    sale Integer// скидка не обязательное поле
+}
+
 relationship OneToMany {
-    Client to Time{client(name)} 
-    Service to Time{service(serviceName)} 
-    Job to Service{job(jobTitle)}
+    Client{time} to Time
+    Job{Service(serviceName)} to Service
+    Job to Time{Job(jobName)}
+    Salon to Time{Salon(salonAddress)}
 }
-
-relationship ManyToOne {
-	Employee{job(jobTitle)} to Job 
-}
-
-
-
-
-
-
-
-

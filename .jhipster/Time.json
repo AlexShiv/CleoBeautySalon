@@ -3,11 +3,11 @@
     "fields": [
         {
             "fieldName": "date",
-            "fieldType": "LocalDate"
+            "fieldType": "Instant"
         },
         {
-            "fieldName": "phone",
-            "fieldType": "String"
+            "fieldName": "duration",
+            "fieldType": "Integer"
         }
     ],
     "relationships": [
@@ -16,17 +16,25 @@
             "otherEntityName": "client",
             "otherEntityRelationshipName": "time",
             "relationshipName": "client",
-            "otherEntityField": "name"
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "service",
+            "otherEntityName": "job",
             "otherEntityRelationshipName": "time",
-            "relationshipName": "service",
-            "otherEntityField": "serviceName"
+            "relationshipName": "job",
+            "otherEntityField": "jobName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "salon",
+            "otherEntityRelationshipName": "time",
+            "relationshipName": "salon",
+            "otherEntityField": "salonAddress"
         }
     ],
-    "changelogDate": "20191219072757",
+    "changelogDate": "20200115182335",
+    "javadoc": "Запись",
     "entityTableName": "time",
     "dto": "no",
     "pagination": "no",

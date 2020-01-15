@@ -38,8 +38,8 @@ public class PromoResourceIT {
     private static final String DEFAULT_PROMO_NAME = "AAAAAAAAAA";
     private static final String UPDATED_PROMO_NAME = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_DESCRIPTION = 1L;
-    private static final Long UPDATED_DESCRIPTION = 2L;
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     private static final Instant DEFAULT_START_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_START_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -174,7 +174,7 @@ public class PromoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(promo.getId().intValue())))
             .andExpect(jsonPath("$.[*].promoName").value(hasItem(DEFAULT_PROMO_NAME)))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.intValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)));
@@ -192,7 +192,7 @@ public class PromoResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(promo.getId().intValue()))
             .andExpect(jsonPath("$.promoName").value(DEFAULT_PROMO_NAME))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.intValue()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
             .andExpect(jsonPath("$.sale").value(DEFAULT_SALE));

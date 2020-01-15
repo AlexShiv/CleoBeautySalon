@@ -1,0 +1,24 @@
+{
+  "cleoBeautySalonApp": {
+    "salon": {
+      "home": {
+        "title": "Salons",
+        "createLabel": "Создать новый Salon",
+        "createOrEditLabel": "Создать или отредактировать Salon",
+        "notFound": "No Salons found"
+      },
+      "created": "Новый Salon создан с идентификатором {{ param }}",
+      "updated": "Salon обновлен с идентификатором {{ param }}",
+      "deleted": "Salon удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Salon {{ id }}?"
+      },
+      "detail": {
+        "title": "Salon"
+      },
+      "address": "Address",
+      "phone": "Phone",
+      "time": "Time"
+    }
+  }
+}

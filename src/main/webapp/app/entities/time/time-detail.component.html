@@ -9,20 +9,26 @@
                 <dd>
                     <span>{{time.date}}</span>
                 </dd>
-                <dt><span jhiTranslate="cleoBeautySalonApp.time.phone">Phone</span></dt>
+                <dt><span jhiTranslate="cleoBeautySalonApp.time.duration">Duration</span></dt>
                 <dd>
-                    <span>{{time.phone}}</span>
+                    <span>{{time.duration}}</span>
                 </dd>
                 <dt><span jhiTranslate="cleoBeautySalonApp.time.client">Client</span></dt>
                 <dd>
                     <div *ngIf="time.client">
-                        <a [routerLink]="['/client', time.client?.id, 'view']">{{time.client?.name}}</a>
+                        <a [routerLink]="['/client', time.client?.id, 'view']">{{time.client?.id}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="cleoBeautySalonApp.time.service">Service</span></dt>
+                <dt><span jhiTranslate="cleoBeautySalonApp.time.job">Job</span></dt>
                 <dd>
-                    <div *ngIf="time.service">
-                        <a [routerLink]="['/service', time.service?.id, 'view']">{{time.service?.serviceName}}</a>
+                    <div *ngIf="time.job">
+                        <a [routerLink]="['/job', time.job?.id, 'view']">{{time.job?.jobName}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cleoBeautySalonApp.time.salon">Salon</span></dt>
+                <dd>
+                    <div *ngIf="time.salon">
+                        <a [routerLink]="['/salon', time.salon?.id, 'view']">{{time.salon?.salonAddress}}</a>
                     </div>
                 </dd>
             </dl>

@@ -6,13 +6,16 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
+import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService } from 'ng-jhipster';
 import { ITime, Time } from 'app/shared/model/time.model';
 import { TimeService } from './time.service';
 import { IClient } from 'app/shared/model/client.model';
 import { ClientService } from 'app/entities/client/client.service';
-import { IService } from 'app/shared/model/service.model';
-import { ServiceService } from 'app/entities/service/service.service';
+import { IJob } from 'app/shared/model/job.model';
+import { JobService } from 'app/entities/job/job.service';
+import { ISalon } from 'app/shared/model/salon.model';
+import { SalonService } from 'app/entities/salon/salon.service';
 
 @Component({
   selector: 'jhi-time-update',
@@ -23,22 +26,25 @@ export class TimeUpdateComponent implements OnInit {
 
   clients: IClient[];
 
-  services: IService[];
-  dateDp: any;
+  jobs: IJob[];
+
+  salons: ISalon[];
 
   editForm = this.fb.group({
     id: [],
     date: [],
-    phone: [],
+    duration: [],
     client: [],
-    service: []
+    job: [],
+    salon: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected timeService: TimeService,
     protected clientService: ClientService,
-    protected serviceService: ServiceService,
+    protected jobService: JobService,
+    protected salonService: SalonService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -51,18 +57,22 @@ export class TimeUpdateComponent implements OnInit {
     this.clientService
       .query()
       .subscribe((res: HttpResponse<IClient[]>) => (this.clients = res.body), (res: HttpErrorResponse) => this.onError(res.message));
-    this.serviceService
+    this.jobService
       .query()
-      .subscribe((res: HttpResponse<IService[]>) => (this.services = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: HttpResponse<IJob[]>) => (this.jobs = res.body), (res: HttpErrorResponse) => this.onError(res.message));
+    this.salonService
+      .query()
+      .subscribe((res: HttpResponse<ISalon[]>) => (this.salons = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(time: ITime) {
     this.editForm.patchValue({
       id: time.id,
-      date: time.date,
-      phone: time.phone,
+      date: time.date != null ? time.date.format(DATE_TIME_FORMAT) : null,
+      duration: time.duration,
       client: time.client,
-      service: time.service
+      job: time.job,
+      salon: time.salon
     });
   }
 
@@ -84,10 +94,11 @@ export class TimeUpdateComponent implements OnInit {
     return {
       ...new Time(),
       id: this.editForm.get(['id']).value,
-      date: this.editForm.get(['date']).value,
-      phone: this.editForm.get(['phone']).value,
+      date: this.editForm.get(['date']).value != null ? moment(this.editForm.get(['date']).value, DATE_TIME_FORMAT) : undefined,
+      duration: this.editForm.get(['duration']).value,
       client: this.editForm.get(['client']).value,
-      service: this.editForm.get(['service']).value
+      job: this.editForm.get(['job']).value,
+      salon: this.editForm.get(['salon']).value
     };
   }
 
@@ -111,7 +122,11 @@ export class TimeUpdateComponent implements OnInit {
     return item.id;
   }
 
-  trackServiceById(index: number, item: IService) {
+  trackJobById(index: number, item: IJob) {
+    return item.id;
+  }
+
+  trackSalonById(index: number, item: ISalon) {
     return item.id;
   }
 }

@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static ru.asu.cleo.web.rest.TestUtil.createFormattingConversionService;
@@ -35,11 +35,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = CleoBeautySalonApp.class)
 public class TimeResourceIT {
 
-    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
+    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
-    private static final String UPDATED_PHONE = "BBBBBBBBBB";
+    private static final Integer DEFAULT_DURATION = 1;
+    private static final Integer UPDATED_DURATION = 2;
 
     @Autowired
     private TimeRepository timeRepository;
@@ -84,7 +84,7 @@ public class TimeResourceIT {
     public static Time createEntity(EntityManager em) {
         Time time = new Time()
             .date(DEFAULT_DATE)
-            .phone(DEFAULT_PHONE);
+            .duration(DEFAULT_DURATION);
         return time;
     }
     /**
@@ -96,7 +96,7 @@ public class TimeResourceIT {
     public static Time createUpdatedEntity(EntityManager em) {
         Time time = new Time()
             .date(UPDATED_DATE)
-            .phone(UPDATED_PHONE);
+            .duration(UPDATED_DURATION);
         return time;
     }
 
@@ -121,7 +121,7 @@ public class TimeResourceIT {
         assertThat(timeList).hasSize(databaseSizeBeforeCreate + 1);
         Time testTime = timeList.get(timeList.size() - 1);
         assertThat(testTime.getDate()).isEqualTo(DEFAULT_DATE);
-        assertThat(testTime.getPhone()).isEqualTo(DEFAULT_PHONE);
+        assertThat(testTime.getDuration()).isEqualTo(DEFAULT_DURATION);
     }
 
     @Test
@@ -156,7 +156,7 @@ public class TimeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(time.getId().intValue())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE)));
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)));
     }
     
     @Test
@@ -171,7 +171,7 @@ public class TimeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(time.getId().intValue()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE));
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION));
     }
 
     @Test
@@ -196,7 +196,7 @@ public class TimeResourceIT {
         em.detach(updatedTime);
         updatedTime
             .date(UPDATED_DATE)
-            .phone(UPDATED_PHONE);
+            .duration(UPDATED_DURATION);
 
         restTimeMockMvc.perform(put("/api/times")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -208,7 +208,7 @@ public class TimeResourceIT {
         assertThat(timeList).hasSize(databaseSizeBeforeUpdate);
         Time testTime = timeList.get(timeList.size() - 1);
         assertThat(testTime.getDate()).isEqualTo(UPDATED_DATE);
-        assertThat(testTime.getPhone()).isEqualTo(UPDATED_PHONE);
+        assertThat(testTime.getDuration()).isEqualTo(UPDATED_DURATION);
     }
 
     @Test

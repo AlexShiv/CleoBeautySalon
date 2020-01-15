@@ -1,4 +1,4 @@
-import { browser, ExpectedConditions as ec, promise } from 'protractor';
+import { browser, ExpectedConditions as ec, protractor, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 import { TimeComponentsPage, TimeDeleteDialog, TimeUpdatePage } from './time.page-object';
@@ -39,13 +39,14 @@ describe('Time e2e test', () => {
 
     await timeComponentsPage.clickOnCreateButton();
     await promise.all([
-      timeUpdatePage.setDateInput('2000-12-31'),
-      timeUpdatePage.setPhoneInput('phone'),
+      timeUpdatePage.setDateInput('01/01/2001' + protractor.Key.TAB + '02:30AM'),
+      timeUpdatePage.setDurationInput('5'),
       timeUpdatePage.clientSelectLastOption(),
-      timeUpdatePage.serviceSelectLastOption()
+      timeUpdatePage.jobSelectLastOption(),
+      timeUpdatePage.salonSelectLastOption()
     ]);
-    expect(await timeUpdatePage.getDateInput()).to.eq('2000-12-31', 'Expected date value to be equals to 2000-12-31');
-    expect(await timeUpdatePage.getPhoneInput()).to.eq('phone', 'Expected Phone value to be equals to phone');
+    expect(await timeUpdatePage.getDateInput()).to.contain('2001-01-01T02:30', 'Expected date value to be equals to 2000-12-31');
+    expect(await timeUpdatePage.getDurationInput()).to.eq('5', 'Expected duration value to be equals to 5');
     await timeUpdatePage.save();
     expect(await timeUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 

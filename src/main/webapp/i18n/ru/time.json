@@ -17,9 +17,10 @@
         "title": "Time"
       },
       "date": "Date",
-      "phone": "Phone",
+      "duration": "Duration",
       "client": "Client",
-      "service": "Service"
+      "job": "Job",
+      "salon": "Salon"
     }
   }
 }

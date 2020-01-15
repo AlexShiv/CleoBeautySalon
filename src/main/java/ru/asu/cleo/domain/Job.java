@@ -27,6 +27,9 @@ public class Job implements Serializable {
     @OneToMany(mappedBy = "job")
     private Set<Service> services = new HashSet<>();
 
+    @OneToMany(mappedBy = "job")
+    private Set<Time> times = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -72,6 +75,31 @@ public class Job implements Serializable {
 
     public void setServices(Set<Service> services) {
         this.services = services;
+    }
+
+    public Set<Time> getTimes() {
+        return times;
+    }
+
+    public Job times(Set<Time> times) {
+        this.times = times;
+        return this;
+    }
+
+    public Job addTime(Time time) {
+        this.times.add(time);
+        time.setJob(this);
+        return this;
+    }
+
+    public Job removeTime(Time time) {
+        this.times.remove(time);
+        time.setJob(null);
+        return this;
+    }
+
+    public void setTimes(Set<Time> times) {
+        this.times = times;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

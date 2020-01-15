@@ -1,14 +1,16 @@
 package ru.asu.cleo.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.Instant;
 
 /**
- * A Time.
+ * Запись
  */
+@ApiModel(description = "Запись")
 @Entity
 @Table(name = "time")
 public class Time implements Serializable {
@@ -20,10 +22,10 @@ public class Time implements Serializable {
     private Long id;
 
     @Column(name = "date")
-    private LocalDate date;
+    private Instant date;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "duration")
+    private Integer duration;
 
     @ManyToOne
     @JsonIgnoreProperties("times")
@@ -31,7 +33,11 @@ public class Time implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("times")
-    private Service service;
+    private Job job;
+
+    @ManyToOne
+    @JsonIgnoreProperties("times")
+    private Salon salon;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -42,30 +48,30 @@ public class Time implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public Time date(LocalDate date) {
+    public Time date(Instant date) {
         this.date = date;
         return this;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 
-    public String getPhone() {
-        return phone;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public Time phone(String phone) {
-        this.phone = phone;
+    public Time duration(Integer duration) {
+        this.duration = duration;
         return this;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     public Client getClient() {
@@ -81,17 +87,30 @@ public class Time implements Serializable {
         this.client = client;
     }
 
-    public Service getService() {
-        return service;
+    public Job getJob() {
+        return job;
     }
 
-    public Time service(Service service) {
-        this.service = service;
+    public Time job(Job job) {
+        this.job = job;
         return this;
     }
 
-    public void setService(Service service) {
-        this.service = service;
+    public void setJob(Job job) {
+        this.job = job;
+    }
+
+    public Salon getSalon() {
+        return salon;
+    }
+
+    public Time salon(Salon salon) {
+        this.salon = salon;
+        return this;
+    }
+
+    public void setSalon(Salon salon) {
+        this.salon = salon;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -116,7 +135,7 @@ public class Time implements Serializable {
         return "Time{" +
             "id=" + getId() +
             ", date='" + getDate() + "'" +
-            ", phone='" + getPhone() + "'" +
+            ", duration=" + getDuration() +
             "}";
     }
 }

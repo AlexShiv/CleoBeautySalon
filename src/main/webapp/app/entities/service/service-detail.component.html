@@ -20,7 +20,7 @@
                 <dt><span jhiTranslate="cleoBeautySalonApp.service.job">Job</span></dt>
                 <dd>
                     <div *ngIf="service.job">
-                        <a [routerLink]="['/job', service.job?.id, 'view']">{{service.job?.jobTitle}}</a>
+                        <a [routerLink]="['/job', service.job?.id, 'view']">{{service.job?.id}}</a>
                     </div>
                 </dd>
             </dl>
