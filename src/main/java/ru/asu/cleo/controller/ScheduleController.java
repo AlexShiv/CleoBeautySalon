@@ -8,8 +8,6 @@ import ru.asu.cleo.service.ScheduleService;
 import ru.asu.cleo.service.dto.ScheduleRequest;
 import ru.asu.cleo.web.rest.ClientResource;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -26,6 +24,6 @@ public class ScheduleController {
 
     @PostMapping("/schedule")
     public ResponseEntity<List<String>> getSchedule(@RequestBody ScheduleRequest request) {
-        return ResponseEntity.ok(scheduleService.getSchedule(request));
+        return ResponseEntity.ok(scheduleService.getFreeTime(request));
     }
 }
