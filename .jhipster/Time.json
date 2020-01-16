@@ -16,21 +16,21 @@
             "otherEntityName": "client",
             "otherEntityRelationshipName": "time",
             "relationshipName": "client",
-            "otherEntityField": "id"
+            "otherEntityField": "phone"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "job",
             "otherEntityRelationshipName": "time",
             "relationshipName": "job",
-            "otherEntityField": "jobName"
+            "otherEntityField": "jobTitle"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "salon",
             "otherEntityRelationshipName": "time",
             "relationshipName": "salon",
-            "otherEntityField": "salonAddress"
+            "otherEntityField": "address"
         }
     ],
     "changelogDate": "20200115182335",

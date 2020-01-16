@@ -20,7 +20,7 @@
             "otherEntityName": "job",
             "otherEntityRelationshipName": "service",
             "relationshipName": "job",
-            "otherEntityField": "id"
+            "otherEntityField": "jobTitle"
         }
     ],
     "changelogDate": "20200115182334",

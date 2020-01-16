@@ -16,19 +16,19 @@
                 <dt><span jhiTranslate="cleoBeautySalonApp.time.client">Client</span></dt>
                 <dd>
                     <div *ngIf="time.client">
-                        <a [routerLink]="['/client', time.client?.id, 'view']">{{time.client?.id}}</a>
+                        <a [routerLink]="['/client', time.client?.id, 'view']">{{time.client?.phone}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="cleoBeautySalonApp.time.job">Job</span></dt>
                 <dd>
                     <div *ngIf="time.job">
-                        <a [routerLink]="['/job', time.job?.id, 'view']">{{time.job?.jobName}}</a>
+                        <a [routerLink]="['/job', time.job?.id, 'view']">{{time.job?.jobTitle}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="cleoBeautySalonApp.time.salon">Salon</span></dt>
                 <dd>
                     <div *ngIf="time.salon">
-                        <a [routerLink]="['/salon', time.salon?.id, 'view']">{{time.salon?.salonAddress}}</a>
+                        <a [routerLink]="['/salon', time.salon?.id, 'view']">{{time.salon?.address}}</a>
                     </div>
                 </dd>
             </dl>

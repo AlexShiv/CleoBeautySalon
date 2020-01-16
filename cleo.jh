@@ -50,8 +50,8 @@ entity Promo {
 }
 
 relationship OneToMany {
-    Client{time} to Time
-    Job{Service(serviceName)} to Service
-    Job to Time{Job(jobName)}
-    Salon to Time{Salon(salonAddress)}
+    Client to Time{client(phone)}
+    Job to Service{job(jobTitle)}
+    Job to Time{job(jobTitle)}
+    Salon to Time{salon(address)}
 }

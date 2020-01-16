@@ -25,21 +25,21 @@
                     <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.client" for="field_client">Client</label>
                     <select class="form-control" id="field_client" name="client" formControlName="client">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.id}}</option>
+                        <option [ngValue]="clientOption.id === editForm.get('client').value?.id ? editForm.get('client').value : clientOption" *ngFor="let clientOption of clients; trackBy: trackClientById">{{clientOption.phone}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.job" for="field_job">Job</label>
                     <select class="form-control" id="field_job" name="job" formControlName="job">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="jobOption.id === editForm.get('job').value?.id ? editForm.get('job').value : jobOption" *ngFor="let jobOption of jobs; trackBy: trackJobById">{{jobOption.jobName}}</option>
+                        <option [ngValue]="jobOption.id === editForm.get('job').value?.id ? editForm.get('job').value : jobOption" *ngFor="let jobOption of jobs; trackBy: trackJobById">{{jobOption.jobTitle}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="cleoBeautySalonApp.time.salon" for="field_salon">Salon</label>
                     <select class="form-control" id="field_salon" name="salon" formControlName="salon">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="salonOption.id === editForm.get('salon').value?.id ? editForm.get('salon').value : salonOption" *ngFor="let salonOption of salons; trackBy: trackSalonById">{{salonOption.salonAddress}}</option>
+                        <option [ngValue]="salonOption.id === editForm.get('salon').value?.id ? editForm.get('salon').value : salonOption" *ngFor="let salonOption of salons; trackBy: trackSalonById">{{salonOption.address}}</option>
                     </select>
                 </div>
             </div>
