@@ -27,9 +27,10 @@ export class TimeUpdatePage {
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
   dateInput = element(by.id('field_date'));
-  phoneInput = element(by.id('field_phone'));
+  durationInput = element(by.id('field_duration'));
   clientSelect = element(by.id('field_client'));
-  serviceSelect = element(by.id('field_service'));
+  jobSelect = element(by.id('field_job'));
+  salonSelect = element(by.id('field_salon'));
 
   async getPageTitle() {
     return this.pageTitle.getAttribute('jhiTranslate');
@@ -43,12 +44,12 @@ export class TimeUpdatePage {
     return await this.dateInput.getAttribute('value');
   }
 
-  async setPhoneInput(phone) {
-    await this.phoneInput.sendKeys(phone);
+  async setDurationInput(duration) {
+    await this.durationInput.sendKeys(duration);
   }
 
-  async getPhoneInput() {
-    return await this.phoneInput.getAttribute('value');
+  async getDurationInput() {
+    return await this.durationInput.getAttribute('value');
   }
 
   async clientSelectLastOption() {
@@ -70,23 +71,42 @@ export class TimeUpdatePage {
     return await this.clientSelect.element(by.css('option:checked')).getText();
   }
 
-  async serviceSelectLastOption() {
-    await this.serviceSelect
+  async jobSelectLastOption() {
+    await this.jobSelect
       .all(by.tagName('option'))
       .last()
       .click();
   }
 
-  async serviceSelectOption(option) {
-    await this.serviceSelect.sendKeys(option);
+  async jobSelectOption(option) {
+    await this.jobSelect.sendKeys(option);
   }
 
-  getServiceSelect(): ElementFinder {
-    return this.serviceSelect;
+  getJobSelect(): ElementFinder {
+    return this.jobSelect;
   }
 
-  async getServiceSelectedOption() {
-    return await this.serviceSelect.element(by.css('option:checked')).getText();
+  async getJobSelectedOption() {
+    return await this.jobSelect.element(by.css('option:checked')).getText();
+  }
+
+  async salonSelectLastOption() {
+    await this.salonSelect
+      .all(by.tagName('option'))
+      .last()
+      .click();
+  }
+
+  async salonSelectOption(option) {
+    await this.salonSelect.sendKeys(option);
+  }
+
+  getSalonSelect(): ElementFinder {
+    return this.salonSelect;
+  }
+
+  async getSalonSelectedOption() {
+    return await this.salonSelect.element(by.css('option:checked')).getText();
   }
 
   async save() {

@@ -19,7 +19,6 @@
       "serviceName": "Service Name",
       "maxDuration": "Max Duration",
       "price": "Price",
-      "time": "Time",
       "job": "Job"
     }
   }

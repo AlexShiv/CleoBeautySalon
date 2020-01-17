@@ -7,7 +7,7 @@
         },
         {
             "fieldName": "maxDuration",
-            "fieldType": "Integer"
+            "fieldType": "Double"
         },
         {
             "fieldName": "price",
@@ -16,12 +16,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "time",
-            "otherEntityRelationshipName": "service",
-            "relationshipName": "time"
-        },
-        {
             "relationshipType": "many-to-one",
             "otherEntityName": "job",
             "otherEntityRelationshipName": "service",
@@ -29,7 +23,8 @@
             "otherEntityField": "jobTitle"
         }
     ],
-    "changelogDate": "20191219072756",
+    "changelogDate": "20200115182334",
+    "javadoc": "ОБязанности",
     "entityTableName": "service",
     "dto": "no",
     "pagination": "no",

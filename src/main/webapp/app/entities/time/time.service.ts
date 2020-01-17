@@ -52,7 +52,7 @@ export class TimeService {
 
   protected convertDateFromClient(time: ITime): ITime {
     const copy: ITime = Object.assign({}, time, {
-      date: time.date != null && time.date.isValid() ? time.date.format(DATE_FORMAT) : null
+      date: time.date != null && time.date.isValid() ? time.date.toJSON() : null
     });
     return copy;
   }

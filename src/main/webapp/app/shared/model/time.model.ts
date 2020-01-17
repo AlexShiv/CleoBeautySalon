@@ -1,15 +1,24 @@
 import { Moment } from 'moment';
 import { IClient } from 'app/shared/model/client.model';
-import { IService } from 'app/shared/model/service.model';
+import { IJob } from 'app/shared/model/job.model';
+import { ISalon } from 'app/shared/model/salon.model';
 
 export interface ITime {
   id?: number;
   date?: Moment;
-  phone?: string;
+  duration?: number;
   client?: IClient;
-  service?: IService;
+  job?: IJob;
+  salon?: ISalon;
 }
 
 export class Time implements ITime {
-  constructor(public id?: number, public date?: Moment, public phone?: string, public client?: IClient, public service?: IService) {}
+  constructor(
+    public id?: number,
+    public date?: Moment,
+    public duration?: number,
+    public client?: IClient,
+    public job?: IJob,
+    public salon?: ISalon
+  ) {}
 }

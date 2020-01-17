@@ -5,16 +5,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'employee',
-        loadChildren: () => import('./employee/employee.module').then(m => m.CleoBeautySalonEmployeeModule)
-      },
-      {
         path: 'job',
         loadChildren: () => import('./job/job.module').then(m => m.CleoBeautySalonJobModule)
-      },
-      {
-        path: 'promo',
-        loadChildren: () => import('./promo/promo.module').then(m => m.CleoBeautySalonPromoModule)
       },
       {
         path: 'service',
@@ -27,6 +19,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'client',
         loadChildren: () => import('./client/client.module').then(m => m.CleoBeautySalonClientModule)
+      },
+      {
+        path: 'salon',
+        loadChildren: () => import('./salon/salon.module').then(m => m.CleoBeautySalonSalonModule)
+      },
+      {
+        path: 'promo',
+        loadChildren: () => import('./promo/promo.module').then(m => m.CleoBeautySalonPromoModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

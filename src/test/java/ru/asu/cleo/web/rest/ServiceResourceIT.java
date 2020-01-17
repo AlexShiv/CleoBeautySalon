@@ -36,8 +36,8 @@ public class ServiceResourceIT {
     private static final String DEFAULT_SERVICE_NAME = "AAAAAAAAAA";
     private static final String UPDATED_SERVICE_NAME = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_MAX_DURATION = 1;
-    private static final Integer UPDATED_MAX_DURATION = 2;
+    private static final Double DEFAULT_MAX_DURATION = 1D;
+    private static final Double UPDATED_MAX_DURATION = 2D;
 
     private static final Integer DEFAULT_PRICE = 1;
     private static final Integer UPDATED_PRICE = 2;
@@ -160,7 +160,7 @@ public class ServiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(service.getId().intValue())))
             .andExpect(jsonPath("$.[*].serviceName").value(hasItem(DEFAULT_SERVICE_NAME)))
-            .andExpect(jsonPath("$.[*].maxDuration").value(hasItem(DEFAULT_MAX_DURATION)))
+            .andExpect(jsonPath("$.[*].maxDuration").value(hasItem(DEFAULT_MAX_DURATION.doubleValue())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)));
     }
     
@@ -176,7 +176,7 @@ public class ServiceResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(service.getId().intValue()))
             .andExpect(jsonPath("$.serviceName").value(DEFAULT_SERVICE_NAME))
-            .andExpect(jsonPath("$.maxDuration").value(DEFAULT_MAX_DURATION))
+            .andExpect(jsonPath("$.maxDuration").value(DEFAULT_MAX_DURATION.doubleValue()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE));
     }
 

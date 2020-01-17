@@ -1,0 +1,32 @@
+{
+    "name": "Salon",
+    "fields": [
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "time",
+            "otherEntityRelationshipName": "salon",
+            "relationshipName": "time"
+        }
+    ],
+    "changelogDate": "20200115182337",
+    "javadoc": "Салоны",
+    "entityTableName": "salon",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,15 +1,15 @@
 package ru.asu.cleo.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * A Service.
+ * ОБязанности
  */
+@ApiModel(description = "ОБязанности")
 @Entity
 @Table(name = "service")
 public class Service implements Serializable {
@@ -24,13 +24,10 @@ public class Service implements Serializable {
     private String serviceName;
 
     @Column(name = "max_duration")
-    private Integer maxDuration;
+    private Double maxDuration;
 
     @Column(name = "price")
     private Integer price;
-
-    @OneToMany(mappedBy = "service")
-    private Set<Time> times = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("services")
@@ -58,16 +55,16 @@ public class Service implements Serializable {
         this.serviceName = serviceName;
     }
 
-    public Integer getMaxDuration() {
+    public Double getMaxDuration() {
         return maxDuration;
     }
 
-    public Service maxDuration(Integer maxDuration) {
+    public Service maxDuration(Double maxDuration) {
         this.maxDuration = maxDuration;
         return this;
     }
 
-    public void setMaxDuration(Integer maxDuration) {
+    public void setMaxDuration(Double maxDuration) {
         this.maxDuration = maxDuration;
     }
 
@@ -82,31 +79,6 @@ public class Service implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public Set<Time> getTimes() {
-        return times;
-    }
-
-    public Service times(Set<Time> times) {
-        this.times = times;
-        return this;
-    }
-
-    public Service addTime(Time time) {
-        this.times.add(time);
-        time.setService(this);
-        return this;
-    }
-
-    public Service removeTime(Time time) {
-        this.times.remove(time);
-        time.setService(null);
-        return this;
-    }
-
-    public void setTimes(Set<Time> times) {
-        this.times = times;
     }
 
     public Job getJob() {
