@@ -9,7 +9,7 @@ import java.util.List;
 public class ScheduleRequest {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,
-        pattern = "dd-MM-yyyy hh:mm:ss")
+        pattern = "dd-MM-yyyy hh:mm:ss", timezone = "Europe/Astrakhan")
     private Date date;
     private List<Double> durations;
     private Long jobId;

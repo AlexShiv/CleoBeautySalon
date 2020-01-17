@@ -19,7 +19,7 @@ entity Service {
  */
 entity Time {
     date Instant,
-    duration Integer // вычисляется на сервере при создании записи
+    duration Double // вычисляется на сервере при создании записи
 }
 
 /**

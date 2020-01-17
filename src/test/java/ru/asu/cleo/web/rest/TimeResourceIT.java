@@ -38,8 +38,8 @@ public class TimeResourceIT {
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Integer DEFAULT_DURATION = 1;
-    private static final Integer UPDATED_DURATION = 2;
+    private static final Double DEFAULT_DURATION = 1D;
+    private static final Double UPDATED_DURATION = 2D;
 
     @Autowired
     private TimeRepository timeRepository;
@@ -156,7 +156,7 @@ public class TimeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(time.getId().intValue())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION)));
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.doubleValue())));
     }
     
     @Test
@@ -171,7 +171,7 @@ public class TimeResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(time.getId().intValue()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION));
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.doubleValue()));
     }
 
     @Test

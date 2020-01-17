@@ -19,7 +19,7 @@
             <column name="date" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="duration" type="integer">
+            <column name="duration" type="double">
                 <constraints nullable="true" />
             </column>
             <column name="client_id" type="bigint">

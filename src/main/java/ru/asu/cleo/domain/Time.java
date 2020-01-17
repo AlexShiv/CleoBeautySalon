@@ -25,7 +25,7 @@ public class Time implements Serializable {
     private Instant date;
 
     @Column(name = "duration")
-    private Integer duration;
+    private Double duration;
 
     @ManyToOne
     @JsonIgnoreProperties("times")
@@ -61,16 +61,16 @@ public class Time implements Serializable {
         this.date = date;
     }
 
-    public Integer getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
-    public Time duration(Integer duration) {
+    public Time duration(Double duration) {
         this.duration = duration;
         return this;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 
