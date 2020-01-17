@@ -34,14 +34,17 @@ public class ScheduleService {
     }
 
     public List<Date> getFreeTime(ScheduleRequest request) throws ParseException {
-        // TODO: 16.01.2020 вынести дату начала и дату конца в конфиг
         Salon salon = salonRepository.findById(request.getSalonId()).orElseThrow();
         Job job = jobRepository.findById(request.getJobId()).orElseThrow();
-        double sumDurations = request.getDurations().stream().mapToDouble(Double::doubleValue).sum();
+        double sumDurations = request.getDurations().stream().mapToDouble(Double::doubleValue).sum() * 2.0;
 
         List<Time> busyTime = timeRepository.findAllBySalonAndJobAndDate(salon, job, request.getDate().toInstant());
-        List<Date> schedule = getSchedule(request.getDate(), "09:00", "20:00");
+        // TODO: 16.01.2020 вынести дату начала и дату конца в конфиг
+        String beginTime = "09:00";
+        String endTime = "20:00";
+        List<Date> schedule = getSchedule(request.getDate(), beginTime, endTime);
 
+        // Удаляем уже занятые даты
         for (Iterator<Date> iterator = schedule.iterator(); iterator.hasNext(); ) {
             Date date = iterator.next();
             log.debug(MessageFormat.format("Start deleting time from schedule. Date: {0}", date.toString()));
@@ -55,13 +58,29 @@ public class ScheduleService {
             }
         }
 
+        // Удаляем даты в которые не влезет отправленный промежуток
+        List<Date> allTimes = getSchedule(request.getDate(), beginTime, endTime);
+        for (Iterator<Date> iterator = schedule.iterator(); iterator.hasNext(); ) {
+            Date date = iterator.next();
+            int index = allTimes.indexOf(date);
+            try {
+                List<Date> subList = allTimes.subList(index, (int) (index + sumDurations));
+                if (!schedule.containsAll(subList)) {
+                    iterator.remove();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                log.info("End of list");
+                iterator.remove();
+            }
+        }
+
         return schedule;
     }
 
     private void deleteBusyTime(Iterator<Date> iterator, Time time, double count) {
         for (int i = 0; i < count; i++) {
             // Костыль для того что бы не удалялся самый последний элемент
-            if (i - count == 1.0) {
+            if (count - i == 1.0) {
                 iterator.remove();
             } else if (iterator.hasNext()) {
                 iterator.remove();
@@ -75,7 +94,7 @@ public class ScheduleService {
 
     private List<Date> getSchedule(Date date, String beginTime, String endTime) throws ParseException {
         // TODO: 16.01.2020 отрефакторить!
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         List<Date> result = new ArrayList<>();
 

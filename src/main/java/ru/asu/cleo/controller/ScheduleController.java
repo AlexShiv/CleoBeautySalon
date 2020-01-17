@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.asu.cleo.service.ScheduleService;
 import ru.asu.cleo.service.dto.ScheduleRequest;
+import ru.asu.cleo.service.dto.ScheduleResponse;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -27,7 +28,7 @@ public class ScheduleController {
     }
 
     @PostMapping("/schedule")
-    public ResponseEntity<List<Date>> getSchedule(@RequestBody ScheduleRequest request) throws ParseException {
-        return ResponseEntity.ok(scheduleService.getFreeTime(request));
+    public ResponseEntity<ScheduleResponse> getSchedule(@RequestBody ScheduleRequest request) throws ParseException {
+        return ResponseEntity.ok(new ScheduleResponse(scheduleService.getFreeTime(request)));
     }
 }
