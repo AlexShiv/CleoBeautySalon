@@ -33,9 +33,10 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_a174f11b8e66932?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: b8f9604e8a5580
-    password: a14f0791
+
+    url: jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_2dd4762eff58194?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: b73df39b48dc92
+    password: 2ec1c1ed
     hikari:
       poolName: Hikari
       auto-commit: false
