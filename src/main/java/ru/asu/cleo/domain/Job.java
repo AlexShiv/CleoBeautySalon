@@ -24,10 +24,10 @@ public class Job implements Serializable {
     @Column(name = "job_title")
     private String jobTitle;
 
-    @OneToMany(mappedBy = "job")
+    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER)
     private Set<Service> services = new HashSet<>();
 
-    @OneToMany(mappedBy = "job")
+    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
     private Set<Time> times = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional; 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -89,7 +89,8 @@ public class JobResource {
     @GetMapping("/jobs")
     public List<Job> getAllJobs() {
         log.debug("REST request to get all Jobs");
-        return jobRepository.findAll();
+        List<Job> all = jobRepository.findAll();
+        return all;
     }
 
     /**
