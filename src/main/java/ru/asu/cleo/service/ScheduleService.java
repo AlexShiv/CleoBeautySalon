@@ -34,8 +34,8 @@ public class ScheduleService {
     }
 
     public List<Date> getFreeTime(ScheduleRequest request) throws ParseException {
-        Salon salon = salonRepository.findById(request.getSalonId()).orElseThrow();
-        Job job = jobRepository.findById(request.getJobId()).orElseThrow();
+        Salon salon = salonRepository.findById(request.getSalonId()).orElseThrow(NoSuchElementException::new);
+        Job job = jobRepository.findById(request.getJobId()).orElseThrow(NoSuchElementException::new);
         double sumDurations = request.getDurations().stream().mapToDouble(Double::doubleValue).sum() * 2.0;
 
         List<Time> busyTime = timeRepository.findAllBySalonAndJobAndDate(salon, job, request.getDate().toInstant());

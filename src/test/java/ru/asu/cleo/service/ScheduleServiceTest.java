@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,8 +40,8 @@ class ScheduleServiceTest {
 //        Instant instant = Instant.now().s;
 //        System.out.println(instant.toString());
 
-        Salon salon = salonRepository.findById(1L).orElseThrow();
-        Job job = jobRepository.findById(1L).orElseThrow();
+        Salon salon = salonRepository.findById(1L).orElseThrow(NoSuchElementException::new);
+        Job job = jobRepository.findById(1L).orElseThrow(NoSuchElementException::new);
 
 
 
