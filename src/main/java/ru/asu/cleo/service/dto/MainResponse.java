@@ -1,10 +1,13 @@
 package ru.asu.cleo.service.dto;
 
-public class MainResponseDTO<T> {
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+public class MainResponse<T> {
+
+    @JsonProperty("response")
     private T response;
 
-    public MainResponseDTO(T response) {
+    public MainResponse(T response) {
         this.response = response;
     }
 
