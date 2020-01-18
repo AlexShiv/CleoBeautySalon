@@ -34,7 +34,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
 
-    url: jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_2dd4762eff58194?useUnicode=true&characterEncoding=cp1251&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_2dd4762eff58194?useUnicode=true&characterEncoding=cp1251&characterSetResults=cp1251&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: b73df39b48dc92
     password: 2ec1c1ed
     hikari:
