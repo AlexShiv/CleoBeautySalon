@@ -3,14 +3,15 @@ package ru.asu.cleo.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import ru.asu.cleo.domain.Client;
 import ru.asu.cleo.domain.Job;
 import ru.asu.cleo.domain.Salon;
 import ru.asu.cleo.domain.Time;
-import ru.asu.cleo.repository.JobRepository;
-import ru.asu.cleo.repository.SalonRepository;
-import ru.asu.cleo.repository.TimeRepository;
+import ru.asu.cleo.repository.*;
 import ru.asu.cleo.service.dto.ScheduleRequest;
+import ru.asu.cleo.service.dto.TimeRequest;
 
 import java.text.MessageFormat;
 import java.text.ParseException;
@@ -25,12 +26,17 @@ public class ScheduleService {
     private final SalonRepository salonRepository;
     private final TimeRepository timeRepository;
     private final JobRepository jobRepository;
+    private final ClientRepository clientRepository;
+    private final ServiceRepository serviceRepository;
+
 
     @Autowired
-    public ScheduleService(SalonRepository salonRepository, TimeRepository timeRepository, JobRepository jobRepository) {
+    public ScheduleService(SalonRepository salonRepository, TimeRepository timeRepository, JobRepository jobRepository, ClientRepository clientRepository, ServiceRepository serviceRepository) {
         this.salonRepository = salonRepository;
         this.timeRepository = timeRepository;
         this.jobRepository = jobRepository;
+        this.clientRepository = clientRepository;
+        this.serviceRepository = serviceRepository;
     }
 
     public List<Date> getFreeTime(ScheduleRequest request) throws ParseException {
@@ -114,5 +120,34 @@ public class ScheduleService {
         }
 
         return result;
+    }
+
+    public HttpStatus addRowInTime(TimeRequest request) {
+        Double sumDurations = request.getDurations().stream().mapToDouble(Double::doubleValue).sum();
+        Job job = jobRepository.findById(request.getJobId()).orElseThrow(NoSuchElementException::new);
+        Salon salon = salonRepository.findById(request.getSalonId()).orElseThrow(NoSuchElementException::new);
+        Client client =  findOrAddClient(request.getPhone(), request.getName());
+
+        Time time = new Time();
+        time.setClient(client);
+        time.setJob(job);
+        time.setSalon(salon);
+        time.setDate(request.getDate().toInstant());
+        time.setDuration(sumDurations);
+
+        timeRepository.save(time);
+
+        return HttpStatus.OK;
+    }
+
+    private Client findOrAddClient(String phone, String name) {
+        Optional<Client> byPhone = clientRepository.findByPhone(phone);
+        if (byPhone.isPresent()) {
+            return byPhone.get();
+        }
+        Client client = new Client();
+        client.setName(name);
+        client.setPhone(phone);
+        return clientRepository.save(client);
     }
 }
